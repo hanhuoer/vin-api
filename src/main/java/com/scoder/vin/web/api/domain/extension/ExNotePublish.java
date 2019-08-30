@@ -1,5 +1,6 @@
 package com.scoder.vin.web.api.domain.extension;
 
+import com.scoder.vin.web.api.domain.basic.NotePublish;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
