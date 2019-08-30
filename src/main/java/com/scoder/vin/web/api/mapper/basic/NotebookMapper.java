@@ -1,10 +1,11 @@
-package com.scoder.vin.web.api.mapper;
+package com.scoder.vin.web.api.mapper.basic;
 
-import com.scoder.vin.web.api.domain.Notebook;
+import com.scoder.vin.web.api.domain.basic.Notebook;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NotebookMapper {
+
     int deleteByPrimaryKey(Long id);
 
     int insert(Notebook record);
@@ -16,4 +17,5 @@ public interface NotebookMapper {
     int updateByPrimaryKeySelective(Notebook record);
 
     int updateByPrimaryKey(Notebook record);
+
 }
