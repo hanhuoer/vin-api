@@ -1,18 +1,33 @@
 package com.scoder.vin.web.api.service;
 
-import com.scoder.vin.web.api.domain.basic.Notebook;
+import com.scoder.vin.web.api.domain.extension.ExNote;
+import com.scoder.vin.web.api.domain.extension.ExNotebook;
+
+import java.util.List;
 
 /**
- * @author shaokang
+ * @author H
  **/
 public interface NotebookService {
 
-    Object query(Long userId);
+    /**
+     * 找出属于当前用户的所有 notebook
+     *
+     * @param userId user id
+     * @return List<ExNotebook>
+     */
+    List<ExNotebook> query(Long userId);
 
-    int append(Notebook notebook);
+    int append(ExNotebook notebook);
 
-    int modify(Notebook notebook);
+    int modify(ExNotebook notebook);
 
-    int remove(Notebook notebook);
+    int delete(ExNotebook notebook);
+
+    int remove(ExNotebook notebook);
+
+    List<ExNotebook> notebooks(Long userId);
+
+    List<ExNote> note(Long userId, Long notebookId);
 
 }

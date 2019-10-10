@@ -6,10 +6,12 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author shaokang
+ * @author H
  **/
 @Data
 @ToString
 @EqualsAndHashCode(callSuper = true)
 public class ExNoteDraft extends NoteDraft {
+
+
 }

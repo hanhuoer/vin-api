@@ -5,6 +5,7 @@ target/
 !**/src/test/**
 
 generator*
+application-online.yml
 
 ### STS ###
 .apt_generated

@@ -1,0 +1,39 @@
+server:
+  port: 28888
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # or java.text.SimpleDateFormat
+    time-zone: GMT+8 # or UTC
+  datasource:
+    username: root
+    password: 123456
+    url: 'jdbc:mysql://127.0.0.1:3306/vin?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=Asia/Hong_Kong&useSSL=false'
+    druid:
+      maxActive: 5
+      initialSize: 2
+      maxWait: 60000
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 200
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1 from dual
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+mybatis:
+  mapper-locations: 'classpath*:mapper/**/*Mapper.xml'
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com:
+      scoder:
+        vin:
+          web:
+            api:
+              mapper:
+                debug
+
+

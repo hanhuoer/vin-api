@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scoder.vin.web.api.mapper.extension.ExTagMapper">
+
+    <select id="findTagByNoteId" resultType="com.scoder.vin.web.api.domain.extension.ExTag">
+        SELECT
+            vt.id,
+            vt.name,
+            vnt.note_id,
+            vnt.create_time
+        FROM
+            v_tag vt
+        LEFT JOIN v_note_tag vnt ON vt.id = vnt.tag_id
+        WHERE
+            vnt.note_id = #{noteId}
+    </select>
+</mapper>

@@ -5,6 +5,8 @@ import java.util.Date;
 public class Note {
     private Long id;
 
+    private Long userId;
+
     private Long notebookId;
 
     private Long noteId;
@@ -19,7 +21,15 @@ public class Note {
 
     private Boolean isPublic;
 
+    private Long pageVisitor;
+
+    private Long uniqueVisitor;
+
     private Integer status;
+
+    private Date firstPublishTime;
+
+    private Date latestEditTime;
 
     private Date createTime;
 
@@ -31,6 +41,14 @@ public class Note {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getNotebookId() {
@@ -89,12 +107,44 @@ public class Note {
         this.isPublic = isPublic;
     }
 
+    public Long getPageVisitor() {
+        return pageVisitor;
+    }
+
+    public void setPageVisitor(Long pageVisitor) {
+        this.pageVisitor = pageVisitor;
+    }
+
+    public Long getUniqueVisitor() {
+        return uniqueVisitor;
+    }
+
+    public void setUniqueVisitor(Long uniqueVisitor) {
+        this.uniqueVisitor = uniqueVisitor;
+    }
+
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getFirstPublishTime() {
+        return firstPublishTime;
+    }
+
+    public void setFirstPublishTime(Date firstPublishTime) {
+        this.firstPublishTime = firstPublishTime;
+    }
+
+    public Date getLatestEditTime() {
+        return latestEditTime;
+    }
+
+    public void setLatestEditTime(Date latestEditTime) {
+        this.latestEditTime = latestEditTime;
     }
 
     public Date getCreateTime() {

@@ -165,6 +165,126 @@ public class NoteDraftExample {
             return (Criteria) this;
         }
 
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(Long value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(Long value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(Long value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(Long value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<Long> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<Long> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(Long value1, Long value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdIsNull() {
+            addCriterion("notebook_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdIsNotNull() {
+            addCriterion("notebook_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdEqualTo(Long value) {
+            addCriterion("notebook_id =", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdNotEqualTo(Long value) {
+            addCriterion("notebook_id <>", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdGreaterThan(Long value) {
+            addCriterion("notebook_id >", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("notebook_id >=", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdLessThan(Long value) {
+            addCriterion("notebook_id <", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdLessThanOrEqualTo(Long value) {
+            addCriterion("notebook_id <=", value, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdIn(List<Long> values) {
+            addCriterion("notebook_id in", values, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdNotIn(List<Long> values) {
+            addCriterion("notebook_id not in", values, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdBetween(Long value1, Long value2) {
+            addCriterion("notebook_id between", value1, value2, "notebookId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotebookIdNotBetween(Long value1, Long value2) {
+            addCriterion("notebook_id not between", value1, value2, "notebookId");
+            return (Criteria) this;
+        }
+
         public Criteria andNoteIdIsNull() {
             addCriterion("note_id is null");
             return (Criteria) this;
@@ -702,6 +822,66 @@ public class NoteDraftExample {
 
         public Criteria andIpNotBetween(String value1, String value2) {
             addCriterion("ip not between", value1, value2, "ip");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeIsNull() {
+            addCriterion("first_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeIsNotNull() {
+            addCriterion("first_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeEqualTo(Date value) {
+            addCriterion("first_time =", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeNotEqualTo(Date value) {
+            addCriterion("first_time <>", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeGreaterThan(Date value) {
+            addCriterion("first_time >", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("first_time >=", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeLessThan(Date value) {
+            addCriterion("first_time <", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeLessThanOrEqualTo(Date value) {
+            addCriterion("first_time <=", value, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeIn(List<Date> values) {
+            addCriterion("first_time in", values, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeNotIn(List<Date> values) {
+            addCriterion("first_time not in", values, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeBetween(Date value1, Date value2) {
+            addCriterion("first_time between", value1, value2, "firstTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstTimeNotBetween(Date value1, Date value2) {
+            addCriterion("first_time not between", value1, value2, "firstTime");
             return (Criteria) this;
         }
 

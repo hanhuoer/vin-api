@@ -3,11 +3,41 @@
 <mapper namespace="com.scoder.vin.web.api.mapper.extension.ExNoteDraftMapper">
 
 
-    <select id="queryLastVersionByNoteId" resultType="com.scoder.vin.web.api.domain.extension.ExNoteDraft">
-        select *
-        from v_note_draft
-        where note_id = #{noteId}
-        order by version desc
-        limit 1
+    <select id="getLastVersionByNoteId" resultType="com.scoder.vin.web.api.domain.extension.ExNoteDraft">
+        SELECT
+            *
+        FROM
+            v_note_draft
+        WHERE
+            note_id = #{noteId}
+        ORDER BY
+            version DESC
+        LIMIT 1
+    </select>
+    <select id="getLastVersionDraftByUserIdAndNotebookIdAndNoteId"
+            resultType="com.scoder.vin.web.api.domain.extension.ExNoteDraft">
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    (
+                        SELECT
+                            *
+                        FROM
+                            v_note_draft
+                        ORDER BY
+                            version DESC
+                        LIMIT 999999999
+                    ) a
+                GROUP BY
+                    a.note_id
+            ) vnd
+        WHERE
+            vnd.user_id = #{userId}
+        AND vnd.notebook_id = #{notebookId}
+        AND vnd.note_id = #{noteId}
     </select>
 </mapper>

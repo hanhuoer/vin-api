@@ -3,6 +3,7 @@
 <mapper namespace="com.scoder.vin.web.api.mapper.basic.NoteMapper">
   <resultMap id="BaseResultMap" type="com.scoder.vin.web.api.domain.basic.Note">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="notebook_id" jdbcType="BIGINT" property="notebookId" />
     <result column="note_id" jdbcType="BIGINT" property="noteId" />
     <result column="draft_version" jdbcType="INTEGER" property="draftVersion" />
@@ -10,7 +11,11 @@
     <result column="is_comment" jdbcType="BIT" property="isComment" />
     <result column="is_show" jdbcType="BIT" property="isShow" />
     <result column="is_public" jdbcType="BIT" property="isPublic" />
+    <result column="page_visitor" jdbcType="BIGINT" property="pageVisitor" />
+    <result column="unique_visitor" jdbcType="BIGINT" property="uniqueVisitor" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="first_publish_time" jdbcType="TIMESTAMP" property="firstPublishTime" />
+    <result column="latest_edit_time" jdbcType="TIMESTAMP" property="latestEditTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -73,8 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, notebook_id, note_id, draft_version, publish_version, is_comment, is_show, is_public, 
-    status, create_time, update_time
+    id, user_id, notebook_id, note_id, draft_version, publish_version, is_comment, is_show, 
+    is_public, page_visitor, unique_visitor, status, first_publish_time, latest_edit_time, 
+    create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.scoder.vin.web.api.domain.basic.NoteExample" resultMap="BaseResultMap">
     select
@@ -108,20 +114,27 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.scoder.vin.web.api.domain.basic.Note">
-    insert into v_note (id, notebook_id, note_id, 
-      draft_version, publish_version, is_comment, 
-      is_show, is_public, status, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{notebookId,jdbcType=BIGINT}, #{noteId,jdbcType=BIGINT}, 
-      #{draftVersion,jdbcType=INTEGER}, #{publishVersion,jdbcType=INTEGER}, #{isComment,jdbcType=BIT}, 
-      #{isShow,jdbcType=BIT}, #{isPublic,jdbcType=BIT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into v_note (id, user_id, notebook_id, 
+      note_id, draft_version, publish_version, 
+      is_comment, is_show, is_public, page_visitor, 
+      unique_visitor, status, first_publish_time, 
+      latest_edit_time, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{notebookId,jdbcType=BIGINT}, 
+      #{noteId,jdbcType=BIGINT}, #{draftVersion,jdbcType=INTEGER}, #{publishVersion,jdbcType=INTEGER}, 
+      #{isComment,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{isPublic,jdbcType=BIT}, #{pageVisitor,jdbcType=BIGINT}, 
+      #{uniqueVisitor,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{firstPublishTime,jdbcType=TIMESTAMP}, 
+      #{latestEditTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.scoder.vin.web.api.domain.basic.Note">
     insert into v_note
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="notebookId != null">
         notebook_id,
@@ -144,8 +157,20 @@
       <if test="isPublic != null">
         is_public,
       </if>
+      <if test="pageVisitor != null">
+        page_visitor,
+      </if>
+      <if test="uniqueVisitor != null">
+        unique_visitor,
+      </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="firstPublishTime != null">
+        first_publish_time,
+      </if>
+      <if test="latestEditTime != null">
+        latest_edit_time,
       </if>
       <if test="createTime != null">
         create_time,
@@ -157,6 +182,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="notebookId != null">
         #{notebookId,jdbcType=BIGINT},
@@ -179,8 +207,20 @@
       <if test="isPublic != null">
         #{isPublic,jdbcType=BIT},
       </if>
+      <if test="pageVisitor != null">
+        #{pageVisitor,jdbcType=BIGINT},
+      </if>
+      <if test="uniqueVisitor != null">
+        #{uniqueVisitor,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="firstPublishTime != null">
+        #{firstPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestEditTime != null">
+        #{latestEditTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -201,6 +241,9 @@
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.notebookId != null">
         notebook_id = #{record.notebookId,jdbcType=BIGINT},
@@ -223,8 +266,20 @@
       <if test="record.isPublic != null">
         is_public = #{record.isPublic,jdbcType=BIT},
       </if>
+      <if test="record.pageVisitor != null">
+        page_visitor = #{record.pageVisitor,jdbcType=BIGINT},
+      </if>
+      <if test="record.uniqueVisitor != null">
+        unique_visitor = #{record.uniqueVisitor,jdbcType=BIGINT},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstPublishTime != null">
+        first_publish_time = #{record.firstPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.latestEditTime != null">
+        latest_edit_time = #{record.latestEditTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -240,6 +295,7 @@
   <update id="updateByExample" parameterType="map">
     update v_note
     set id = #{record.id,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
       notebook_id = #{record.notebookId,jdbcType=BIGINT},
       note_id = #{record.noteId,jdbcType=BIGINT},
       draft_version = #{record.draftVersion,jdbcType=INTEGER},
@@ -247,7 +303,11 @@
       is_comment = #{record.isComment,jdbcType=BIT},
       is_show = #{record.isShow,jdbcType=BIT},
       is_public = #{record.isPublic,jdbcType=BIT},
+      page_visitor = #{record.pageVisitor,jdbcType=BIGINT},
+      unique_visitor = #{record.uniqueVisitor,jdbcType=BIGINT},
       status = #{record.status,jdbcType=INTEGER},
+      first_publish_time = #{record.firstPublishTime,jdbcType=TIMESTAMP},
+      latest_edit_time = #{record.latestEditTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -257,6 +317,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.scoder.vin.web.api.domain.basic.Note">
     update v_note
     <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
       <if test="notebookId != null">
         notebook_id = #{notebookId,jdbcType=BIGINT},
       </if>
@@ -278,8 +341,20 @@
       <if test="isPublic != null">
         is_public = #{isPublic,jdbcType=BIT},
       </if>
+      <if test="pageVisitor != null">
+        page_visitor = #{pageVisitor,jdbcType=BIGINT},
+      </if>
+      <if test="uniqueVisitor != null">
+        unique_visitor = #{uniqueVisitor,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="firstPublishTime != null">
+        first_publish_time = #{firstPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestEditTime != null">
+        latest_edit_time = #{latestEditTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -292,14 +367,19 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.scoder.vin.web.api.domain.basic.Note">
     update v_note
-    set notebook_id = #{notebookId,jdbcType=BIGINT},
+    set user_id = #{userId,jdbcType=BIGINT},
+      notebook_id = #{notebookId,jdbcType=BIGINT},
       note_id = #{noteId,jdbcType=BIGINT},
       draft_version = #{draftVersion,jdbcType=INTEGER},
       publish_version = #{publishVersion,jdbcType=INTEGER},
       is_comment = #{isComment,jdbcType=BIT},
       is_show = #{isShow,jdbcType=BIT},
       is_public = #{isPublic,jdbcType=BIT},
+      page_visitor = #{pageVisitor,jdbcType=BIGINT},
+      unique_visitor = #{uniqueVisitor,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
+      first_publish_time = #{firstPublishTime,jdbcType=TIMESTAMP},
+      latest_edit_time = #{latestEditTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

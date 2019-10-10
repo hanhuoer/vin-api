@@ -165,6 +165,66 @@ public class NoteExample {
             return (Criteria) this;
         }
 
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(Long value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(Long value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(Long value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(Long value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<Long> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<Long> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(Long value1, Long value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
         public Criteria andNotebookIdIsNull() {
             addCriterion("notebook_id is null");
             return (Criteria) this;
@@ -585,6 +645,126 @@ public class NoteExample {
             return (Criteria) this;
         }
 
+        public Criteria andPageVisitorIsNull() {
+            addCriterion("page_visitor is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorIsNotNull() {
+            addCriterion("page_visitor is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorEqualTo(Long value) {
+            addCriterion("page_visitor =", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorNotEqualTo(Long value) {
+            addCriterion("page_visitor <>", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorGreaterThan(Long value) {
+            addCriterion("page_visitor >", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorGreaterThanOrEqualTo(Long value) {
+            addCriterion("page_visitor >=", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorLessThan(Long value) {
+            addCriterion("page_visitor <", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorLessThanOrEqualTo(Long value) {
+            addCriterion("page_visitor <=", value, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorIn(List<Long> values) {
+            addCriterion("page_visitor in", values, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorNotIn(List<Long> values) {
+            addCriterion("page_visitor not in", values, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorBetween(Long value1, Long value2) {
+            addCriterion("page_visitor between", value1, value2, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andPageVisitorNotBetween(Long value1, Long value2) {
+            addCriterion("page_visitor not between", value1, value2, "pageVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorIsNull() {
+            addCriterion("unique_visitor is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorIsNotNull() {
+            addCriterion("unique_visitor is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorEqualTo(Long value) {
+            addCriterion("unique_visitor =", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorNotEqualTo(Long value) {
+            addCriterion("unique_visitor <>", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorGreaterThan(Long value) {
+            addCriterion("unique_visitor >", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorGreaterThanOrEqualTo(Long value) {
+            addCriterion("unique_visitor >=", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorLessThan(Long value) {
+            addCriterion("unique_visitor <", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorLessThanOrEqualTo(Long value) {
+            addCriterion("unique_visitor <=", value, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorIn(List<Long> values) {
+            addCriterion("unique_visitor in", values, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorNotIn(List<Long> values) {
+            addCriterion("unique_visitor not in", values, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorBetween(Long value1, Long value2) {
+            addCriterion("unique_visitor between", value1, value2, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
+        public Criteria andUniqueVisitorNotBetween(Long value1, Long value2) {
+            addCriterion("unique_visitor not between", value1, value2, "uniqueVisitor");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -642,6 +822,126 @@ public class NoteExample {
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeIsNull() {
+            addCriterion("first_publish_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeIsNotNull() {
+            addCriterion("first_publish_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeEqualTo(Date value) {
+            addCriterion("first_publish_time =", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeNotEqualTo(Date value) {
+            addCriterion("first_publish_time <>", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeGreaterThan(Date value) {
+            addCriterion("first_publish_time >", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("first_publish_time >=", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeLessThan(Date value) {
+            addCriterion("first_publish_time <", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeLessThanOrEqualTo(Date value) {
+            addCriterion("first_publish_time <=", value, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeIn(List<Date> values) {
+            addCriterion("first_publish_time in", values, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeNotIn(List<Date> values) {
+            addCriterion("first_publish_time not in", values, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeBetween(Date value1, Date value2) {
+            addCriterion("first_publish_time between", value1, value2, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstPublishTimeNotBetween(Date value1, Date value2) {
+            addCriterion("first_publish_time not between", value1, value2, "firstPublishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeIsNull() {
+            addCriterion("latest_edit_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeIsNotNull() {
+            addCriterion("latest_edit_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeEqualTo(Date value) {
+            addCriterion("latest_edit_time =", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeNotEqualTo(Date value) {
+            addCriterion("latest_edit_time <>", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeGreaterThan(Date value) {
+            addCriterion("latest_edit_time >", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("latest_edit_time >=", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeLessThan(Date value) {
+            addCriterion("latest_edit_time <", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeLessThanOrEqualTo(Date value) {
+            addCriterion("latest_edit_time <=", value, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeIn(List<Date> values) {
+            addCriterion("latest_edit_time in", values, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeNotIn(List<Date> values) {
+            addCriterion("latest_edit_time not in", values, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeBetween(Date value1, Date value2) {
+            addCriterion("latest_edit_time between", value1, value2, "latestEditTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLatestEditTimeNotBetween(Date value1, Date value2) {
+            addCriterion("latest_edit_time not between", value1, value2, "latestEditTime");
             return (Criteria) this;
         }
 

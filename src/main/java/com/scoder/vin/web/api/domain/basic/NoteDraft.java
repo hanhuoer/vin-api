@@ -5,6 +5,10 @@ import java.util.Date;
 public class NoteDraft {
     private Long id;
 
+    private Long userId;
+
+    private Long notebookId;
+
     private Long noteId;
 
     private String title;
@@ -21,6 +25,8 @@ public class NoteDraft {
 
     private String ip;
 
+    private Date firstTime;
+
     private Date createTime;
 
     private Date updateTime;
@@ -31,6 +37,22 @@ public class NoteDraft {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getNotebookId() {
+        return notebookId;
+    }
+
+    public void setNotebookId(Long notebookId) {
+        this.notebookId = notebookId;
     }
 
     public Long getNoteId() {
@@ -95,6 +117,14 @@ public class NoteDraft {
 
     public void setIp(String ip) {
         this.ip = ip == null ? null : ip.trim();
+    }
+
+    public Date getFirstTime() {
+        return firstTime;
+    }
+
+    public void setFirstTime(Date firstTime) {
+        this.firstTime = firstTime;
     }
 
     public Date getCreateTime() {

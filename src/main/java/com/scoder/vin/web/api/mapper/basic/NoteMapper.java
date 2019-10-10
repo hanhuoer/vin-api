@@ -2,9 +2,10 @@ package com.scoder.vin.web.api.mapper.basic;
 
 import com.scoder.vin.web.api.domain.basic.Note;
 import com.scoder.vin.web.api.domain.basic.NoteExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface NoteMapper {

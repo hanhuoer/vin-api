@@ -2,5 +2,280 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scoder.vin.web.api.mapper.extension.ExNoteMapper">
 
-
+    <select id="findByNotebookId" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vn.*, vnd.title,
+            vnd.version,
+            vnd.id draftId
+        FROM
+            v_note vn
+        LEFT JOIN (
+            SELECT
+                *
+            FROM
+                (
+                    SELECT
+                        *
+                    FROM
+                        v_note_draft
+                    ORDER BY
+                        version DESC
+                    LIMIT 999999999
+                ) a
+            GROUP BY
+                a.note_id
+        ) vnd ON vn.note_id = vnd.note_id
+        WHERE
+            notebook_id = #{noteBookId}
+    </select>
+    <select id="findDraftByNotebookIdAndUserId" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vn.*, vnd.title,
+            vnd.version,
+            vnd.id draftId
+        FROM
+            v_note vn
+        LEFT JOIN (
+            SELECT
+                *
+            FROM
+                (
+                    SELECT
+                        *
+                    FROM
+                        v_note_draft
+                    ORDER BY
+                        version DESC
+                    LIMIT 999999999
+                ) a
+            GROUP BY
+                a.note_id
+        ) vnd ON vn.note_id = vnd.note_id
+        WHERE
+            vn.notebook_id = #{noteBookId}
+            and vn.user_id = #{userId}
+            and vn.status = 1
+    </select>
+    <select id="noteListData" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vnb.name notebookName,
+            vn.id,
+            vn.user_id,
+            vn.notebook_id,
+            vn.note_id,
+            vn.draft_version,
+            vn.publish_version,
+            vn.is_comment,
+            vn.is_show,
+            vn.is_public,
+            vn. STATUS status,
+            vnp.title,
+            vnp.note_abstract,
+            vnp.content_html,
+            vnp.version,
+            vnp.origin,
+            vnp.ip,
+            vnp.create_time,
+            vnp.update_time
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        INNER JOIN v_note_publish vnp ON vn.note_id = vnp.note_id
+        AND vn.publish_version = vnp.version
+        WHERE
+            vnb.type = 1
+            AND vn.status = 1
+            AND vn.is_show = 1
+        ORDER BY vnp.create_time DESC
+        limit #{limitStart}, #{limitEnd}
+    </select>
+    <select id="noteListCount" resultType="java.lang.Integer">
+        SELECT
+            count(1) count
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        INNER JOIN v_note_publish vnp ON vn.note_id = vnp.note_id
+        AND vn.publish_version = vnp.version
+        WHERE
+            vnb.type = 1
+            AND vn.status = 1
+            AND vn.is_show = 1
+    </select>
+    <select id="getPublishedNoteDetailByNoteIdOfVisitor" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vnb. NAME notebookName,
+            vn.id,
+            vn.user_id,
+            vn.notebook_id,
+            vn.note_id,
+            vn.publish_version,
+            vn.is_comment,
+            vn.is_show,
+            vn.is_public,
+            vn.page_visitor,
+            vn.first_publish_time,
+            vn.latest_edit_time,
+            vn.create_time,
+            vn.update_time,
+            vnp.id publishId,
+            vnp.title,
+            vnp.note_abstract,
+            vnp.content_html,
+            vnp.version,
+            vu. NAME author
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        LEFT JOIN v_note_publish vnp ON vn.note_id = vnp.note_id
+        AND vn.publish_version = vnp.version
+        INNER JOIN v_user vu ON vn.user_id = vu.id
+        WHERE
+            vn.note_id = #{noteId}
+        AND vnb.type = 1
+        LIMIT 1
+    </select>
+    <select id="getPublishedNoteDetailByNoteIdOfMaster" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vnb.name notebookName,
+            vn.id,
+            vn.user_id,
+            vn.notebook_id,
+            vn.note_id,
+            vn.publish_version,
+            vn.is_comment,
+            vn.is_show,
+            vn.is_public,
+            vn.page_visitor,
+            vn.first_publish_time,
+            vn.latest_edit_time,
+            vn.create_time,
+            vn.update_time,
+            vnp.id publishId,
+            vnp.title,
+            vnp.note_abstract,
+            vnp.content_html,
+            vnp.version,
+            vu.name author
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        LEFT JOIN v_note_publish vnp ON vn.note_id = vnp.note_id AND vn.publish_version = vnp.version
+        INNER JOIN v_user vu ON vn.user_id = vu.id
+        WHERE
+            vn.note_id = #{noteId}
+        limit 1
+    </select>
+    <select id="getByNoteId" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        select * from v_note vn where vn.note_id = #{noteId} limit 1
+    </select>
+    <select id="findAllPublishedNote" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vn.id,
+            vn.user_id,
+            vn.notebook_id,
+            vn.note_id,
+            vn.publish_version,
+            vn.is_comment,
+            vn.is_show,
+            vn.is_public,
+            vn.first_publish_time,
+            vn.latest_edit_time,
+            vn.create_time,
+            vn.update_time,
+            vnp.title,
+            vnp.version,
+            vnp.origin,
+            vnp.ip
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        INNER JOIN v_note_publish vnp ON vn.note_id = vnp.note_id
+        AND vn.publish_version = vnp.version
+        WHERE
+            vnb.type = 1
+        AND vn.publish_version IS NOT NULL
+        ORDER BY
+            vn.first_publish_time DESC;
+    </select>
+    <select id="getVinVisitor" resultType="com.scoder.vin.web.api.domain.extension.ExNote">
+        SELECT
+            vnb.name notebookName,
+            vn.id,
+            vn.user_id,
+            vn.notebook_id,
+            vn.note_id,
+            vn.publish_version,
+            vn.is_comment,
+            vn.is_show,
+            vn.is_public,
+            vn.page_visitor,
+            vn.first_publish_time,
+            vn.latest_edit_time,
+            vn.create_time,
+            vn.update_time,
+            vnp.id publishId,
+            vnp.title,
+            vnp.note_abstract,
+            vnp.content_html,
+            vnp.version,
+            vu. NAME author
+        FROM
+            v_note vn
+        INNER JOIN v_notebook vnb ON vn.notebook_id = vnb.id
+        LEFT JOIN v_note_publish vnp ON vn.note_id = vnp.note_id
+        AND vn.publish_version = vnp.version
+        INNER JOIN v_user vu ON vn.user_id = vu.id
+        WHERE
+            vn.note_id = #{noteId}
+        LIMIT 1;
+    </select>
+    <update id="updateByNoteIdSelective" parameterType="com.scoder.vin.web.api.domain.extension.ExNote">
+        update v_note
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="notebookId != null">
+                notebook_id = #{notebookId,jdbcType=BIGINT},
+            </if>
+            <if test="draftVersion != null">
+                draft_version = #{draftVersion,jdbcType=INTEGER},
+            </if>
+            <if test="publishVersion != null">
+                publish_version = #{publishVersion,jdbcType=INTEGER},
+            </if>
+            <if test="isComment != null">
+                is_comment = #{isComment,jdbcType=BIT},
+            </if>
+            <if test="isShow != null">
+                is_show = #{isShow,jdbcType=BIT},
+            </if>
+            <if test="isPublic != null">
+                is_public = #{isPublic,jdbcType=BIT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="firstPublishTime != null">
+                first_publish_time = #{firstPublishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="latestEditTime != null">
+                latest_edit_time = #{latestEditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where note_id = #{noteId,jdbcType=BIGINT}
+    </update>
+    <update id="pageVisitorNumberPlusOne">
+        UPDATE v_note vn
+        SET vn.page_visitor = vn.page_visitor + 1
+        WHERE
+            vn.note_id = #{noteId}
+    </update>
 </mapper>

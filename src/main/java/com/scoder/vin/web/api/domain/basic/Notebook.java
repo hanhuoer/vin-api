@@ -11,6 +11,8 @@ public class Notebook {
 
     private Integer status;
 
+    private Integer type;
+
     private Date createTime;
 
     private Date updateTime;
@@ -45,6 +47,14 @@ public class Notebook {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getCreateTime() {

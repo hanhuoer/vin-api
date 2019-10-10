@@ -1,18 +1,23 @@
 package com.scoder.vin.web.api.controller;
 
+import com.scoder.vin.web.api.annotation.UserId;
+import com.scoder.vin.web.api.common.message.Response;
 import com.scoder.vin.web.api.domain.extension.ExNote;
 import com.scoder.vin.web.api.domain.extension.ExNoteDraft;
 import com.scoder.vin.web.api.service.NoteDraftService;
 import com.scoder.vin.web.api.service.NoteService;
+import com.scoder.vin.web.api.system.Router;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author shaokang
+ * @author H
  **/
 @RestController
-@RequestMapping("/note/draft/")
+@RequestMapping(Router.API_VIN_WEB + "/note/draft/")
+@Api(tags = {"NoteDraft"})
 public class NoteDraftController {
 
     @Autowired
@@ -22,7 +27,7 @@ public class NoteDraftController {
 
     @PostMapping("save")
     @ApiOperation(value = "save", notes = "save to draft")
-    public Object save(@RequestBody ExNoteDraft request) {
+    public Response save(@UserId Long userId, @RequestBody ExNoteDraft request) {
 
         // save draft
         int draftId = noteDraftService.append(request);
@@ -36,13 +41,13 @@ public class NoteDraftController {
         );
         noteService.modify(exNote);
 
-        return null;
+        return Response.success();
     }
 
-    @GetMapping("get/{noteId}/content")
-    @ApiOperation(value = "get", notes = "这里的 note id 指文章随机数, 并非主键 id")
-    public ExNoteDraft getContent(@PathVariable Long noteId) {
-        return noteDraftService.queryLastVersionByNoteId(noteId);
+    @GetMapping("content/{draftId}")
+    @ApiOperation(value = "content", notes = "")
+    public Response content(@UserId Long userId, @PathVariable Long draftId) {
+        return Response.success(noteDraftService.content(draftId));
     }
 
 }
